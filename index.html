@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Building an Interactive and Dynamic Web Page</title>
+    <style>
+        body{
+            padding: 0;
+            margin: 0;
+            display: block;            
+            background-color: rgb(23, 23, 66);
+            color: white;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .ball {
+            width: 30px;
+            height: 30px;
+            background-color: #c29c04;
+            border-radius: 50%;
+            position: absolute;
+            top: 50px;
+            left: calc(70% - 10px);
+            animation: bounce 2s ease infinite;
+        }
+          
+        @keyframes bounce {
+            0%, 100% {
+              transform: translateY(0);
+            }
+            50% {
+              transform: translateY(-50px);
+            }
+        }
+
+        h1, h2 {
+            color: rgb(219, 232, 243);
+            text-align: center;
+        }
+
+        h2 {
+            padding-top: 10px;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(102, 102, 102);
+            padding-top: 60px;
+        }
+
+        .modal-content {
+            background-color: #f8d5d5;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            color: black;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        #container{
+            display: block;
+            background-color: #2b333b;
+            align-items: center;
+            margin-top: 150px;
+            
+        }
+
+        #frontend, #backend {          
+            padding: 10px 20px;
+            background-color: #92a5b8;
+            max-width: 200px;
+            margin: 20px auto;            
+            transition: background color 0.5s ease-out, transform 0.3s;
+            animation: moveLeft 5s linear infinite;
+        }
+
+        #frontend:hover, #backend:hover {
+            background-color: #d2d7db;
+            transform: scale(1.1);
+            
+        }
+
+        @keyframes moveLeft {
+            0%, 100%{
+                transform: translateX(0);
+            }
+            50%{
+                transform: translate(-1000px);
+            }
+        }
+
+        #backend {
+            padding: 10px 20px;
+            background-color: #92a5b8;
+            max-width: 200px;    
+            margin-top: 15px;  
+            animation: backEnd 2s ease-out infinite alternate-reverse;      
+            transition: background color 0.5s ease-out, transform 0.3s;
+        }
+
+        
+        #cv{
+            padding: 10px 25px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 18px;
+            margin-top: 16px;
+            font-weight: bold;
+            align-items: center;
+            cursor: pointer;
+            transition: background-color 0.5s ease-in-out, transform 0.1s;
+        }
+
+        #cv:hover {
+            background-color: rgb(202, 160, 241);
+            transform: scale(1.1);
+        }
+
+    </style>
+</head>
+<body>
+    <h1>My Portfolio</h1>
+    <div class="ball">🏀</div>
+    </div>
+    <div id="container">
+        <h2>Programming Languages</h2>
+        <div id="frontend">
+            <p>FrontEnd</p>
+            <ul>
+                <li>HTML5</li>
+                <li>CSS3</li>
+                <li>JavaScript</li>
+            </ul>   
+        </div>
+        <div id="backend">
+            <p>BackEnd</p>
+            <ul>
+                <li>MongoDB</li>
+                <li>mySQL</li>
+                <li>Python</li>
+            </ul>
+        </div>
+       
+    </div>
+    <button id="cv">CV</button>
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p id="p1">Hello fam, for you to view my CV, I must upload it first, so just hold on a little bit, bye.</p>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', ()=> {
+            const cv = document.getElementById("cv");
+            const modal = document.getElementById("myModal")
+            const closeModal = document.getElementsByClassName("close")[0];
+
+            cv.onclick = function() {
+                modal.style.display = "block";
+            }
+
+            closeModal.onclick = function() {
+                modal.style.display = "none";
+            }
+
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            }
+        })
+    </script>
+</body>
+</html>
